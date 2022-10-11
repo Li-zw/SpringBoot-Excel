@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.exceldemo.mapper.ExamMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.exceldemo.entity.Exam">
+        <id column="qid" property="qid"/>
+        <result column="sid" property="sid"/>
+        <result column="title" property="title"/>
+        <result column="test_materials" property="testMaterials"/>
+        <result column="options" property="options"/>
+        <result column="type" property="type"/>
+        <result column="reference_answers" property="referenceAnswers"/>
+        <result column="analysis" property="analysis"/>
+        <result column="img_title" property="imgTitle"/>
+        <result column="img_options" property="imgOptions"/>
+        <result column="img_analysis" property="imgAnalysis"/>
+        <result column="img_reference" property="imgReference"/>
+        <result column="grade" property="grade"/>
+        <result column="year" property="year"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="updated_time" property="updatedTime"/>
+    </resultMap>
+
+    <!-- 数据传输对象 -->
+    <resultMap id="BusinessResultMap" type="com.example.exceldemo.entity.Exam">
+        <id column="qid" property="qid"/>
+        <id column="sid" property="sid"/>
+        <result column="title" property="title"/>
+        <result column="test_materials" property="testMaterials"/>
+        <result column="options" property="options"/>
+        <result column="type" property="type"/>
+        <result column="reference_answers" property="referenceAnswers"/>
+        <result column="analysis" property="analysis"/>
+        <result column="img_title" property="imgTitle"/>
+        <result column="img_options" property="imgOptions"/>
+        <result column="img_reference" property="imgReference"/>
+        <result column="img_analysis" property="imgAnalysis"/>
+        <result column="grade" property="grade"/>
+        <result column="year" property="year"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        qid
+        , sid, title, test_materials, options, type, reference_answers, analysis, img_title, img_options, img_analysis, img_reference, grade, year, del_flag, created_time, updated_time
+    </sql>
+
+    <sql id="Business_Column_List">
+        qid
+        , sid,title, test_materials,options, type, reference_answers, analysis, img_title, img_options, img_reference,img_analysis,grade,year
+    </sql>
+
+
+    <!--动态写入题目信息（纯文本信息）-->
+    <insert id="insertExamInfo" parameterType="com.example.exceldemo.entity.Exam">
+        insert into cqnu_study_exam
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sid != null">
+                sid ,
+            </if>
+            <if test="title != null">
+                title ,
+            </if>
+            <if test="testMaterials != null">
+                test_materials ,
+            </if>
+            <if test="options != null">
+                options ,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="referenceAnswers != null">
+                reference_answers ,
+            </if>
+            <if test="analysis != null">
+                analysis ,
+            </if>
+            <if test="grade != null">
+                grade ,
+            </if>
+            <if test="year != null">
+                year ,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sid != null">
+                #{sid},
+            </if>
+            <if test="title != null">
+                #{title},
+            </if>
+            <if test="testMaterials != null">
+                #{testMaterials},
+            </if>
+            <if test="options != null">
+                #{options},
+            </if>
+            <if test="type != null">
+                #{type},
+            </if>
+            <if test="referenceAnswers != null">
+                #{referenceAnswers},
+            </if>
+            <if test="analysis != null">
+                #{analysis},
+            </if>
+            <if test="grade != null">
+                #{grade},
+            </if>
+            <if test="year != null">
+                #{year},
+            </if>
+
+        </trim>
+    </insert>
+
+</mapper>
